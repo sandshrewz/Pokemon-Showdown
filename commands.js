@@ -486,7 +486,7 @@ var commands = exports.commands = {
 	},
 
 	m: 'mute',
-	mute: function(target, room, user) {
+	mute: function(target, room, user, connection) {
 		if (!target) return this.parse('/help mute');
 
 		target = this.splitTarget(target);
@@ -502,7 +502,7 @@ var commands = exports.commands = {
 			}
 			return this.addModCommand(''+targetUser.name+' would be muted by '+user.name+problem+'.' + (target ? " (" + target + ")" : ""));
 		}
-		if (Rooms.rooms[targetRoom.id].users[targetUser.userid]) {
+		if (!Rooms.rooms[room.id].users[userid]) {
 			targetUser.popup(user.name+' has muted you for 7 minutes. '+target);
 		}
 		this.addModCommand(''+targetUser.name+' was muted by '+user.name+' for 7 minutes.' + (target ? " (" + target + ")" : ""));
