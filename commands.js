@@ -502,8 +502,9 @@ var commands = exports.commands = {
 			}
 			return this.addModCommand(''+targetUser.name+' would be muted by '+user.name+problem+'.' + (target ? " (" + target + ")" : ""));
 		}
-
-		targetUser.popup(user.name+' has muted you for 7 minutes. '+target);
+		if (Rooms.rooms[targetRoom.id].users[targetUser.userid]) {
+			targetUser.popup(user.name+' has muted you for 7 minutes. '+target);
+		}
 		this.addModCommand(''+targetUser.name+' was muted by '+user.name+' for 7 minutes.' + (target ? " (" + target + ")" : ""));
 		var alts = targetUser.getAlts();
 		if (alts.length) this.addModCommand(""+targetUser.name+"'s alts were also muted: "+alts.join(", "));
