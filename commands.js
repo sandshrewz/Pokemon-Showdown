@@ -491,6 +491,8 @@ var commands = exports.commands = {
 
 		target = this.splitTarget(target);
 		var targetUser = this.targetUser;
+		var name = this.targetUsername;
+		var userid = toId(name);
 		if (!targetUser) {
 			return this.sendReply('User '+this.targetUsername+' not found.');
 		}
